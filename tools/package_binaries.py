@@ -424,13 +424,13 @@ def make_packages(targets):
                 src = os.path.join(binaries_location, f)
                 dest = os.path.join(folder, f)
                 if os.path.isdir(src): # like nw.app
-                    shutil.copytree(src, dest)
+                    shutil.copytree(src, dest, symlinks=True)
                 else:
                     shutil.copy(src, dest)
             compress(dist_dir, dist_dir, t['output'], t['compress'])
             # remove temp folders
             if (t.has_key('keep4test')) :
-                shutil.copytree(folder, nwfolder)
+                shutil.copytree(folder, nwfolder, symlinks=True)
             
             shutil.rmtree(folder)
         else:
